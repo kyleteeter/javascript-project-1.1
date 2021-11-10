@@ -7,29 +7,34 @@ fetch('./students.json')
 
 function displayStudent(students) {
     students.forEach(student => {
-        this.root.innerHTML += renderSingleStudent(student)
+        let parents = [];
         Object.keys(student).forEach(key => {
             if (key === 'parents'){
-                displayParent(student[key])
+                parents = (displayParent(student[key]))
             }
         })
+        this.root.innerHTML += renderSingleStudent(student, parents)
     })   
 }
 
-function renderSingleStudent(student) {
-    return `<details><summary>${student.name}<summary></details>`
+function renderSingleStudent(student, parents) {
+    return `<details class="student"><summary>${student.name}</summary>${parents}</details>`
 }
 
 function displayParent(parents){
-    if (parents.constructor.name === "Array") {
+    let results = [];
+    if (!parents){
+        return [];
+    } else if (parents.constructor.name === "Array") {
         parents.forEach(parent => {
-            this.root.innerHTML += renderSingleParent(parent)
+            results += (renderSingleParent(parent))
         })
     } else {
-        renderSingleParent(parents)
+        results += (renderSingleParent(parents))
     }
+    return results;
 }
 
 function renderSingleParent(parent) {
-    return `<details><summary>${parent.name}<summary></details>`
+    return `<details><summary>${parent.name}</summary></details>`
 }
