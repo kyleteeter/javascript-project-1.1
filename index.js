@@ -18,7 +18,7 @@ function displayStudent(students) {
 }
 
 function renderSingleStudent(student, parents) {
-    return `<details class="student"><summary>${student.name}</summary><p>Email: ${student.email}</p><p>Section: ${student.section}</p><p>Grade: ${student.grade}</p><h3>Parents</h3>${parents}</details>`
+    return `<details class="student"><summary>${student.name}</summary><p>Email: ${student.email}</p><p>Section: ${student.section}</p><p>Grade: ${student.grade}</p><h3>${parents.length ? 'Parents' : 'No parents registered'}</h3>${parents}</details>`
 }
 
 function displayParent(parents){
@@ -36,5 +36,5 @@ function displayParent(parents){
 }
 
 function renderSingleParent(parent) {
-    return `<details><summary>${parent.name}</summary><p>Email: ${parent.email}</p><p>Phone: ${parent.phone}</p></details>`
+    return `<details class="parent"><summary>${parent.name}</summary><p>Email: ${parent.email}</p><p>Phone: ${parent.phone}</p></details>`
 }
